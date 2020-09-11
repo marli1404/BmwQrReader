@@ -1,0 +1,51 @@
+<!--NEW-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Qr Scanner BMW</ion-title>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<form [formGroup]="loginDetails"> 
+	
+	<ion-list>
+		<ion-item>
+			<ion-label position="floating">Email</ion-label>
+			<ion-input type="email"  formControlName="email"  required  pattern="^[a-z0-9._%+-]+@[a-z0-9._]+\.[a-z]{1,4}$" ></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="floating">Password</ion-label>
+			<ion-input type="password" formControlName="password"  id="password" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"></ion-input>
+		</ion-item>
+	</ion-list>
+ 
+	<div>
+		<ion-button expand="block" padding (click)="login()">Log In</ion-button>
+	</div>
+
+</form>
+
+
+<div *ngIf="password.invalid && ( password.dirty || password.touched) && (password.errors.required  || password.errors.invalid)" class="alert alert-danger">
+	Password  is required.
+</div>
+
+<div *ngIf="email.invalid && ( email.dirty || email.touched) && (email.errors.required  || email.errors.invalid)" class="alert alert-danger">
+	Email is required.
+</div>
+
+<div *ngIf=" password.invalid && password.touched && password.errors.pattern" class="alert alert-danger">
+	Password need at least one digit, one Uppercase and Lowercase letter.
+</div>
+
+<div *ngIf=" email.invalid && email.touched && email.errors.pattern" class="alert alert-danger">
+	Email needs to be a valid email with an @-sign and dot-character (.)
+</div>
+
+<div *ngIf="password.invalid  && ( password.dirty || password.touched) && password.errors.minlength" class="alert alert-danger">
+	Password must have at least 8 characters.
+</div>
+

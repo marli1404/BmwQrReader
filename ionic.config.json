@@ -1,0 +1,7 @@
+{
+  "name": "BmwQrReader",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="qr-code-outline" slot="start"></ion-icon>
+    <ion-title>
+      Employee Qr Scanner
+    </ion-title>
+    <ion-button slot="end" size="small" shape="round" 
+    (click)="logout()">
+      <ion-icon slot="end" name="exit"></ion-icon>
+      Logout
+    </ion-button>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <!-- Do not need it...
+  <input #fileinput type="file" accept="image/*capture=camera" hidden 
+  (change)="handleFile($event.target.files)">
+  -->
+  <!-- file input -->
+  <!-- Do not need it...
+  <ion-button expand="full" (click)="captureImage()">
+    <ion-icon slot="start" name="camera"></ion-icon>
+    Capture Image
+  </ion-button>
+  -->
+  <ion-button expand="full" id="checkAvailbtn" (click)="startScan()">
+    <ion-icon slot="start" name="qr-scanner"></ion-icon>
+    Check Availability
+  </ion-button>
+
+  <ion-button onclick="myShowHide(this.id)" expand="full" id="checkInbtn" (click)="startScan()" (click)="checkIn()">
+    Check In
+  </ion-button>
+  <ion-button onclick="myShowHide(this.id)" expand="full" id="checkOutbtn" (click)="startScan()" (click)="checkOut()">
+    Check Out
+  </ion-button>
+
+  <ion-button expand="full" color="danger" (click)="reset()" *ngIf="scanResult">
+    Reset
+  </ion-button>
+
+  <!-- show camera stream -->
+  <video #video [hidden]="!scanActive" width="100%"></video>
+  
+  <!-- used to render the camera stream images -->
+  <canvas #canvas hidden></canvas>
+
+  <!-- stop scannner preview -->
+  <ion-button expand="full" color="danger" (click)="stopScan()" *ngIf="scanActive">
+    <ion-icon slot="start" name="close"></ion-icon>
+    Stop scan
+  </ion-button>
+
+  <ion-card *ngIf="scanResult">
+    <ion-card-header>
+      <ion-card-title>QR Code</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ scanResult }}
+    </ion-card-content>
+  </ion-card>
+<!--   <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="Login">
+        <ion-label>Logout</ion-label>
+        <ion-icon name="card"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+-->
+
+</ion-content>
+
+<script>
+  var myShowHide = function(e){
+    var x = document.getElementById(e);
+    var checkInb = document.getElementById("checkInBtn");
+    var checkOutb = document.getElementById("checkOutBtn");
+    var checkAvailb = document.getElementById("checkAvailBtn");
+    if (x=='checkOutbtn'){
+      checkInb.display = false;
+      checkAvailb.display = false;
+    } else if (x=='checkInbtn'){
+      checkOutb.display = false;
+      checkAvailb.display = false;
+    } else if (x=='checkAvailbtn'){
+      checkInb.display = false;
+      checkOutb.display = false;
+    }
+  }
+</script>
