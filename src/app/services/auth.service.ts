@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //import { View } from '../models/view';
 import * as jwt_decode from 'jwt-decode';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ToastsService } from './toasts.service';
@@ -91,7 +91,7 @@ export class AuthService {
       if(expiry.getTime() - new Date().getTime() < 0)
         return false;
 
-      return true;
+        return true;
     }
     return false;
 

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon name="qr-code-outline" slot="start"></ion-icon>
-    <ion-title>
+    <ion-title color="white">
       Employee Qr Scanner
     </ion-title>
     <ion-button slot="end" size="small" shape="round" 
@@ -25,20 +25,16 @@
     Capture Image
   </ion-button>
   -->
-  <ion-button expand="full" id="checkAvailbtn" (click)="startScan()">
+  <ion-button expand="full" id="checkAvailbtn" (click)="startScan()" (click)="checkAvailClick()">
     <ion-icon slot="start" name="qr-scanner"></ion-icon>
     Check Availability
   </ion-button>
 
-  <ion-button onclick="myShowHide(this.id)" expand="full" id="checkInbtn" (click)="startScan()" (click)="checkIn()">
+  <ion-button  expand="full" id="checkInbtn" (click)="startScan()" (click)="checkInClick()">
     Check In
   </ion-button>
-  <ion-button onclick="myShowHide(this.id)" expand="full" id="checkOutbtn" (click)="startScan()" (click)="checkOut()">
+  <ion-button  expand="full" id="checkOutbtn" (click)="startScan()" (click)="checkOutClick()">
     Check Out
-  </ion-button>
-
-  <ion-button expand="full" color="danger" (click)="reset()" *ngIf="scanResult">
-    Reset
   </ion-button>
 
   <!-- show camera stream -->
@@ -52,7 +48,7 @@
     <ion-icon slot="start" name="close"></ion-icon>
     Stop scan
   </ion-button>
-
+<!--
   <ion-card *ngIf="scanResult">
     <ion-card-header>
       <ion-card-title>QR Code</ion-card-title>
@@ -61,6 +57,7 @@
       {{ scanResult }}
     </ion-card-content>
   </ion-card>
+  -->
 <!--   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="Login">
@@ -72,8 +69,7 @@
 -->
 
 </ion-content>
-
-<script>
+<!--<script>
   var myShowHide = function(e){
     var x = document.getElementById(e);
     var checkInb = document.getElementById("checkInBtn");
@@ -91,3 +87,4 @@
     }
   }
 </script>
+-->

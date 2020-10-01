@@ -13,10 +13,6 @@ import { FormBuilder, Validators, FormGroup, FormControl, FormsModule, ReactiveF
 })
 export class LoginPage implements OnInit, OnDestroy {
 
- // email: string;
- // password: string;
- 
-
   constructor(
     private router: Router,
     public toastCtrl: ToastController,
@@ -24,21 +20,25 @@ export class LoginPage implements OnInit, OnDestroy {
     private builder: FormBuilder
   ) {}
 
-  loginDetails: any;
+  loginDetails: FormGroup;
+
+  emailInvalid = false;
+  displayError : any;
 
   ngOnInit() {
-    console.log('NgOnInit Login');
+    //console.log('NgOnInit Login');
     this.buildForm();
+    this.emailInvalid = false;
   }
 
   ngOnDestroy(){
-    console.log("ngon destroy");
+    //console.log("ngon destroy");
   }
 
   buildForm(){
     this.loginDetails = this.builder.group({
       'email':['',Validators.required,  Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9._]+\.[a-z]{2,4}$")  ],
-      'password':['',Validators.required,  Validators.pattern("(?=^.{8,15}$)(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?!.*\s)-_.*$"), Validators.minLength(8)]
+      'password':['',Validators.required]
     });
   }
   getFormValues(){
@@ -48,16 +48,7 @@ export class LoginPage implements OnInit, OnDestroy {
     }
   }
 
-  async login(){
-    //console.log('email:'+ this.email);
-    //console.log('password:'+ this.password);
-    
-    //console.log('button pressed');
-    //this.router.navigate(['/home']);
-    //console.log('supposed to go to home');
-    
-    //jono login stuff
-
+  login(){
     this.auth.logIn(this.getFormValues()).subscribe(success => this.logInSuccess(),
      error => this.loginFailed(error));
   }
@@ -65,24 +56,20 @@ export class LoginPage implements OnInit, OnDestroy {
   logInSuccess(){
     if(this.auth.isLoggedIn)
       this.router.navigate(['/home']);
+      this.loginDetails.reset();
   }
 
   loginFailed(error: any){
-    console.log(error);
+    this.emailInvalid = true;
+    this.displayError = error.error.message;
+    this.loginDetails.reset();
   }
 
   get email(){
     return this.loginDetails.get('email');
   }
 
-  /*get password(){
-    return this.loginDetails.get('password');
-  }*/
-
   get password(){
-
     return this.loginDetails.get('password');
   }
-
-
 }

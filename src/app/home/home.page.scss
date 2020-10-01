@@ -65,3 +65,15 @@
 .forgot:hover{
 cursor: pointer;
 }
+.bg{
+  background-color: grey;
+}
+ion-content{
+  --ion-background-color:white;
+}
+ion-header{
+  --ion-background-color: grey;
+}
+ion-title{
+  color: white;
+}

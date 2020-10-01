@@ -1,26 +1,24 @@
 .grid-container{
     display: grid;
+    justify-content: left;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4,25vh);
     grid-template-areas: 
     "header header header header header header"
-    " . login login signup signup ."
-    " . login login signup signup ."
+    " . login login login login  ."
+    " . login login login login  ."
     "footer footer footer footer footer footer"
     ;
 }
 
-.signup{
-    grid-area: signup;  
-    justify-content: center;
-}
+
 .login{
     grid-area: login;
-    border-right: solid 2px grey;
-    justify-content: center;
+    justify-content: left;
 }
+
 .login-container{
-    width: 90%;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
 }
@@ -30,10 +28,12 @@
 .footer{
     grid-area: footer;
 }
-.forgot{
-    float: right;
-    color: #007bff;
+ion-header{
+    --ion-background-color: grey;
 }
-.forgot:hover{
-  cursor: pointer;
+ion-title{
+    color: white;
+}
+div{
+    color: red;
 }

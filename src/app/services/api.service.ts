@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { Country } from '../models/country';
 //import { Nationality } from '../models/Nationality';
 import { ToastsService } from './toasts.service';
+import { UserBooking } from '../models/userBooking';
 
 
 @Injectable({
@@ -15,6 +16,9 @@ export class ApiService {
   user : string = `${this.globalRoot}API/User/`;
   country : string = `${this.globalRoot}API/Country/`;
   nationality : string = `${this.globalRoot}API/Nationality/`;
+  userBooking : string = `${this.globalRoot}API/UserBooking/`;
+
+  
   constructor( private http: HttpClient){ 
 
   }
@@ -37,9 +41,24 @@ export class ApiService {
     console.log(userDetails);
     return this.http.post(this.user,{"request":"createAccount","payload": userDetails});
   }
+   //////UserBooking////////////////////////
+  
+  getUserBooking(){
+    return this.http.post<UserBooking[]>(this.userBooking, {request: 'getUserBooking'});
+  }
+  
 
+  checkAvailability(tableId: any){
+    return this.http.post<UserBooking[]>(this.userBooking, {request: 'checkAvailability', payload: tableId });
+  }
 
+  checkIn(tableId: any){
+    return this.http.post<UserBooking[]>(this.userBooking, {request: 'checkIn', payload: tableId });
+  }
 
+  checkOut(tableId: any){
+    return this.http.post<UserBooking[]>(this.userBooking, {request: 'checkOut', payload: tableId });
+  }
 
   
 }
